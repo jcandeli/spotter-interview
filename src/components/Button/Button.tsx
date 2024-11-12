@@ -1,18 +1,62 @@
 import React from "react";
+import { XIcon, PauseIcon } from "lucide-react";
 
-interface ButtonProps {
+interface BaseButtonProps {
   onClick: () => void;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   disabled?: boolean;
 }
 
-export const Button: React.FC<ButtonProps> = ({
+interface IconButtonProps extends BaseButtonProps {
+  variation: "icon";
+  icon: "pause" | "close";
+}
+
+interface InvisibleButtonProps extends BaseButtonProps {
+  variation: "invisible";
+  icon?: never;
+}
+
+type ButtonProps = IconButtonProps | InvisibleButtonProps;
+
+export const Button = ({
   onClick,
   children,
   disabled,
-}) => {
+  variation,
+  icon,
+}: ButtonProps) => {
+  const getIcon = () => {
+    if (!icon) return null;
+    switch (icon) {
+      case "pause":
+        return <PauseIcon size={16} />;
+      case "close":
+        return <XIcon size={16} />;
+      default:
+        return null;
+    }
+  };
+
+  const buttonStyle: React.CSSProperties = {
+    ...(variation === "invisible" && {
+      background: "none",
+      border: "none",
+      padding: 0,
+      color: "inherit",
+      textDecoration: "underline",
+      cursor: "pointer",
+    }),
+    ...(variation === "icon" && {
+      display: "flex",
+      alignItems: "center",
+      gap: "8px",
+    }),
+  };
+
   return (
-    <button onClick={onClick} disabled={disabled}>
+    <button onClick={onClick} disabled={disabled} style={buttonStyle}>
+      {variation === "icon" && getIcon()}
       {children}
     </button>
   );

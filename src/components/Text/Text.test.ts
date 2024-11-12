@@ -1,1 +1,1 @@
-const minimumProps = { children: "Sample text" };
+// const minimumProps = { children: "Sample text" };

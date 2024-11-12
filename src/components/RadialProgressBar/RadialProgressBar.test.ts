@@ -1,1 +1,1 @@
-const minimumProps = { progress: 50 };
+// const minimumProps = { progress: 50 };
