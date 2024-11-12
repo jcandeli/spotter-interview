@@ -1,5 +1,5 @@
 import React from "react";
-import { XIcon, PauseIcon } from "lucide-react";
+import { XIcon, PauseIcon, PlayIcon } from "lucide-react";
 
 interface BaseButtonProps {
   onClick: () => void;
@@ -9,7 +9,7 @@ interface BaseButtonProps {
 
 interface IconButtonProps extends BaseButtonProps {
   variation: "icon";
-  icon: "pause" | "close";
+  icon: "pause" | "close" | "play";
 }
 
 interface InvisibleButtonProps extends BaseButtonProps {
@@ -33,6 +33,8 @@ export const Button = ({
         return <PauseIcon size={16} />;
       case "close":
         return <XIcon size={16} />;
+      case "play":
+        return <PlayIcon size={16} />;
       default:
         return null;
     }
