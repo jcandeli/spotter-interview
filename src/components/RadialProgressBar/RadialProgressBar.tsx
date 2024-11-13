@@ -6,6 +6,7 @@ interface RadialProgressBarProps {
 
 const ProgressBar = styled.svg`
   rotate: -90deg;
+  z-index: 1;
 `;
 
 const Progress = styled.circle`
