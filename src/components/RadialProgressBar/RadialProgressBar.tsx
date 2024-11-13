@@ -14,7 +14,7 @@ const Progress = styled.circle`
 `;
 
 export const RadialProgressBar = ({ progress }: RadialProgressBarProps) => {
-  const radius = 30;
+  const radius = 38;
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (progress / 100) * circumference;
 
@@ -33,7 +33,7 @@ export const RadialProgressBar = ({ progress }: RadialProgressBarProps) => {
         cy="50"
         r={radius}
         stroke={`var(--primary-color)`}
-        strokeWidth="4"
+        strokeWidth="5"
         fill="none"
         strokeLinecap="round"
         strokeDasharray={circumference}

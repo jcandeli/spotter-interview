@@ -6,17 +6,15 @@ import Modal from "../Modal";
 import { RadialProgressBar } from "../RadialProgressBar/RadialProgressBar";
 import { TimeInput } from "../TimeInput/TimeInput";
 
-const ScreanReaderOnly = styled.span`
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-`;
-
 const Footer = styled.footer`
   display: flex;
   gap: 1rem;
+  justify-content: space-between;
+  padding-top: 3rem;
+`;
+
+const ProgressContainer = styled.section`
+  position: relative;
 `;
 
 export const Timer = () => {
@@ -35,15 +33,15 @@ export const Timer = () => {
 
   return (
     <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} heading="Timer">
-      <section>
+      <ProgressContainer>
         <TimeInput />
-      </section>
-      <RadialProgressBar progress={progress} />
+        <RadialProgressBar progress={progress} />
+      </ProgressContainer>
 
       <Footer>
         <Button onClick={addMinute} variation="invisible">
-          + 1:00
-          <ScreanReaderOnly>Add 1 minute</ScreanReaderOnly>
+          <span aria-hidden="true">+1:00</span>
+          <span className="sr-only">Add 1 minute</span>
         </Button>
 
         <Button

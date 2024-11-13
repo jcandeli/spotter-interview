@@ -21,20 +21,23 @@ const ModalOverlay = styled.div`
   align-items: center;
 `;
 
-const ModalContent = styled.div`
+const ModalContainer = styled.div`
   background: var(--modal-background-color);
   border-radius: 1rem;
-  max-width: 500px;
-  width: 90%;
+  width: min(95vw, 460px);
+`;
+
+const ModalContent = styled.div`
+  padding: 3rem 2rem;
+  box-sizing: border-box;
 `;
 
 const ModalHeader = styled.header`
   background-color: var(--modal-heading-color);
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 1.5rem 2rem;
+  position: relative;
 `;
 
 export const Modal = ({ isOpen, onClose, heading, children }: ModalProps) => {
@@ -57,9 +60,14 @@ export const Modal = ({ isOpen, onClose, heading, children }: ModalProps) => {
       aria-modal="true"
       aria-labelledby="modal-heading"
     >
-      <ModalContent tabIndex={-1}>
+      <ModalContainer tabIndex={-1}>
         <ModalHeader>
-          <Text variant="heading" as="h2" id="modal-heading">
+          <Text
+            variant="heading"
+            as="h2"
+            id="modal-heading"
+            style={{ flexGrow: 1, textAlign: "center" }}
+          >
             {heading}
           </Text>
           <Button
@@ -67,10 +75,11 @@ export const Modal = ({ isOpen, onClose, heading, children }: ModalProps) => {
             variation="icon"
             icon="close"
             aria-label="Close modal"
+            style={{ position: "absolute", top: 16, right: 16 }}
           />
         </ModalHeader>
-        <div>{children}</div>
-      </ModalContent>
+        <ModalContent>{children}</ModalContent>
+      </ModalContainer>
     </ModalOverlay>
   );
 };

@@ -56,7 +56,7 @@ export const TimerProvider = ({ children }: { children: ReactNode }) => {
   }, [timerValue]);
 
   const addMinute = () => {
-    setTimerValue((prev) => prev + 60000); // Add 60 seconds
+    setTimerValue((prev) => prev + 60000);
     setCurrentTime((prev) => prev + 60000);
   };
 
