@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
 import { useTimer } from "../../context/TimerContext";
 import Button from "../Button";
 import Modal from "../Modal";
@@ -17,22 +16,25 @@ const ProgressContainer = styled.section`
   position: relative;
 `;
 
-export const Timer = () => {
-  const { startTimer, resetTimer, addMinute, stopTimer, progress } = useTimer();
-  const [isOpen, setIsOpen] = useState(true);
-  const [isPaused, setIsPaused] = useState(false);
+interface TimerProps {
+  isOpen?: boolean;
+  onClose: () => void;
+}
+
+export const Timer = ({ isOpen = true, onClose }: TimerProps) => {
+  const { startTimer, resetTimer, addMinute, stopTimer, progress, isRunning } =
+    useTimer();
 
   const handlePlayPause = () => {
-    setIsPaused(!isPaused);
-    if (isPaused) {
-      startTimer();
-    } else {
+    if (isRunning) {
       stopTimer();
+    } else {
+      startTimer();
     }
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} heading="Timer">
+    <Modal isOpen={isOpen} onClose={onClose} heading="Timer">
       <ProgressContainer>
         <TimeInput />
         <RadialProgressBar progress={progress} />
@@ -46,10 +48,10 @@ export const Timer = () => {
 
         <Button
           onClick={handlePlayPause}
-          variation="icon"
-          icon={isPaused ? "play" : "pause"}
+          icon={isRunning ? "pause" : "play"}
+          iconLabel={isRunning ? "Pause" : "Start"}
         >
-          {isPaused ? "Start" : "Pause"}
+          {isRunning ? "Pause" : "Start"}
         </Button>
 
         <Button onClick={resetTimer} variation="invisible">

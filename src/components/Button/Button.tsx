@@ -3,26 +3,24 @@ import { PauseIcon, PlayIcon, XIcon } from "lucide-react";
 import React from "react";
 import Text from "../Text";
 
-interface BaseButtonProps {
+interface ButtonProps {
   onClick: () => void;
   children?: React.ReactNode;
   disabled?: boolean;
   style?: React.CSSProperties;
+  variation?: "invisible";
+  icon?: "pause" | "close" | "play";
+  iconLabel?: string;
 }
 
-interface IconButtonProps extends BaseButtonProps {
-  variation: "icon";
-  icon: "pause" | "close" | "play";
-}
+const StyledButton = styled.button<{ variation?: "invisible" }>`
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+  border-radius: 50%;
+  padding: 16px 17px;
+  border: none;
+  line-height: 1;
 
-interface InvisibleButtonProps extends BaseButtonProps {
-  variation: "invisible";
-  icon?: never;
-}
-
-type ButtonProps = IconButtonProps | InvisibleButtonProps;
-
-const StyledButton = styled.button<{ variation: ButtonProps["variation"] }>`
   ${({ variation }) =>
     variation === "invisible" &&
     `
@@ -32,17 +30,6 @@ const StyledButton = styled.button<{ variation: ButtonProps["variation"] }>`
     padding: 0;
     color: var(--primary-color);
     cursor: pointer;
-  `}
-
-  ${({ variation }) =>
-    variation === "icon" &&
-    `
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
-    border-radius: 50%;
-    padding: 16px 17px;
-    border: none;
-    line-height: 1;
   `}
 
   :focus {
@@ -58,6 +45,7 @@ export const Button = ({
   variation,
   icon,
   style,
+  iconLabel,
 }: ButtonProps) => {
   const getIcon = () => {
     if (!icon) return null;
@@ -79,9 +67,10 @@ export const Button = ({
       disabled={disabled}
       variation={variation}
       style={style}
+      aria-label={iconLabel}
     >
-      {variation === "icon" && getIcon()}
-      {variation === "icon" ? (
+      {getIcon()}
+      {icon ? (
         <span className="sr-only">{children}</span>
       ) : (
         <Text variant="body">{children}</Text>

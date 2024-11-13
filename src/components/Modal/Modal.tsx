@@ -72,10 +72,10 @@ export const Modal = ({ isOpen, onClose, heading, children }: ModalProps) => {
           </Text>
           <Button
             onClick={onClose}
-            variation="icon"
+            variation="invisible"
             icon="close"
-            aria-label="Close modal"
-            style={{ position: "absolute", top: 16, right: 16 }}
+            iconLabel="Close modal"
+            style={{ position: "absolute", top: 36, right: 32 }}
           />
         </ModalHeader>
         <ModalContent>{children}</ModalContent>

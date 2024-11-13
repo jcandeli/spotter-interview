@@ -15,6 +15,7 @@ interface TimerContextType {
   resetTimer: () => void;
   startTimer: () => void;
   stopTimer: () => void;
+  isRunning: boolean;
 }
 
 const TimerContext = createContext<TimerContextType | undefined>(undefined);
@@ -83,6 +84,7 @@ export const TimerProvider = ({ children }: { children: ReactNode }) => {
         resetTimer,
         startTimer,
         stopTimer,
+        isRunning,
       }}
     >
       {children}
