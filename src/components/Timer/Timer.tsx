@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { useTimer } from "../../context/TimerContext";
-import { formatTime } from "../../utils";
 import Button from "../Button";
 import Modal from "../Modal";
-import Text from "../Text";
+import { RadialProgressBar } from "../RadialProgressBar/RadialProgressBar";
+import { TimeInput } from "../TimeInput/TimeInput";
 
 const ScreanReaderOnly = styled.span`
   border: 0;
@@ -20,25 +20,25 @@ const Footer = styled.footer`
 `;
 
 export const Timer = () => {
-  const { startTimer, resetTimer, addMinute, currentTime, stopTimer } =
-    useTimer();
+  const { startTimer, resetTimer, addMinute, stopTimer, progress } = useTimer();
   const [isOpen, setIsOpen] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
 
-  const handlePlayPause = useCallback(() => {
+  const handlePlayPause = () => {
     setIsPaused(!isPaused);
     if (isPaused) {
       startTimer();
     } else {
       stopTimer();
     }
-  }, [isPaused, startTimer, stopTimer]);
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} heading="Timer">
-      <div>
-        <Text>{formatTime(currentTime)}</Text>
-      </div>
+      <section>
+        <TimeInput />
+      </section>
+      <RadialProgressBar progress={progress} />
 
       <Footer>
         <Button onClick={addMinute} variation="invisible">
@@ -51,7 +51,7 @@ export const Timer = () => {
           variation="icon"
           icon={isPaused ? "play" : "pause"}
         >
-          {isPaused ? "Play" : "Pause"}
+          {isPaused ? "Start" : "Pause"}
         </Button>
 
         <Button onClick={resetTimer} variation="invisible">

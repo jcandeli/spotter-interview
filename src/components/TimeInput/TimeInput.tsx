@@ -1,16 +1,18 @@
-import React from "react";
+import { useTimer } from "../../context/TimerContext/TimerContext";
+import { formatTime, parseTime } from "../../utils";
 
-interface TimeInputProps {
-  value: string;
-  onChange: (value: string) => void;
-}
-
-export const TimeInput: React.FC<TimeInputProps> = ({ value, onChange }) => {
+export const TimeInput = () => {
+  const { currentTime, setTimerValue } = useTimer();
+  // TODO: add validation
   return (
-    <input
-      type="time"
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-    />
+    <>
+      <label htmlFor="timer-input">Time</label>
+      <input
+        id="timer-input"
+        type="text"
+        defaultValue={formatTime(currentTime)}
+        onBlur={(e) => setTimerValue(parseTime(e.target.value))}
+      />
+    </>
   );
 };

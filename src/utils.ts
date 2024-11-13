@@ -5,3 +5,8 @@ export const formatTime = (time: number) => {
     .toString()
     .padStart(2, "0")}`;
 };
+
+export const parseTime = (time: string) => {
+  const [minutes, seconds] = time.split(":").map(Number);
+  return (minutes * 60 + seconds) * 1000;
+};

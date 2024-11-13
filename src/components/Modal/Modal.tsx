@@ -16,21 +16,22 @@ const ModalOverlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 const ModalContent = styled.div`
-  background: white;
-  padding: 20px;
-  border-radius: 4px;
+  background: var(--modal-background-color);
+  border-radius: 1rem;
   max-width: 500px;
   width: 90%;
 `;
 
 const ModalHeader = styled.header`
+  background-color: var(--modal-heading-color);
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
