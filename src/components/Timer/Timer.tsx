@@ -9,11 +9,12 @@ const Footer = styled.footer`
   display: flex;
   gap: 1rem;
   justify-content: space-between;
-  padding-top: 3rem;
+  padding-top: 2rem;
 `;
 
 const ProgressContainer = styled.section`
   position: relative;
+  padding: 2rem 0;
 `;
 
 interface TimerProps {

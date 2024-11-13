@@ -4,7 +4,7 @@ import Timer from "./components/Timer";
 import TimerProvider from "./context/TimerContext";
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   return (
     <main>
       <Button
@@ -17,7 +17,7 @@ function App() {
           transform: "translate(-50%, -50%)",
         }}
       >
-        Open timer
+        New timer
       </Button>
       <TimerProvider>
         <Timer isOpen={isOpen} onClose={() => setIsOpen(false)} />

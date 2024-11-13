@@ -26,11 +26,11 @@ export const TimerProvider = ({ children }: { children: ReactNode }) => {
   const [isRunning, setIsRunning] = useState(false);
   const [progress, setProgress] = useState(100);
 
-  // Update current time every second
+  // Update current time and progress every second
   useEffect(() => {
-    let interval: number;
+    let interval: NodeJS.Timeout;
 
-    if (isRunning && currentTime > 0) {
+    if (isRunning) {
       interval = setInterval(() => {
         setCurrentTime((prev) => {
           if (prev <= 0) {
