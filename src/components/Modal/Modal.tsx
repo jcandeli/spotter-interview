@@ -24,12 +24,15 @@ const ModalOverlay = styled.div`
 const ModalContainer = styled.div`
   background: var(--modal-background-color);
   border-radius: 1rem;
-  width: min(95vw, 460px);
+  width: clamp(350px, 95vw, 460px);
 `;
 
 const ModalContent = styled.div`
-  padding: 3rem 2rem;
+  padding: 2rem 1rem;
   box-sizing: border-box;
+  @media (min-width: 375px) {
+    padding: 3rem 2rem;
+  }
 `;
 
 const ModalHeader = styled.header`

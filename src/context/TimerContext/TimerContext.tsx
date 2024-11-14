@@ -18,6 +18,11 @@ interface TimerContextType {
   isRunning: boolean;
 }
 
+const calculateProgress = (currentTime: number, timerValue: number) => {
+  const percentage = (currentTime / timerValue) * 100;
+  return percentage < 0 ? 0 : percentage;
+};
+
 const TimerContext = createContext<TimerContextType | undefined>(undefined);
 
 export const TimerProvider = ({ children }: { children: ReactNode }) => {
@@ -37,19 +42,16 @@ export const TimerProvider = ({ children }: { children: ReactNode }) => {
             setIsRunning(false);
             return 0;
           }
+          // Calculate and set progress for the next second
+          // - 2000 to make animation line up with the second tick
+          setProgress(calculateProgress(prev - 2000, timerValue));
           return prev - 1000;
         });
       }, 1000);
 
-      // Update progress
-      setProgress(() => {
-        const percentage = (currentTime / timerValue) * 100;
-        return percentage < 0 ? 0 : percentage;
-      });
-
       return () => clearInterval(interval);
     }
-  }, [isRunning, currentTime, timerValue]);
+  }, [isRunning, timerValue]);
 
   // Update current time when timer value changes
   useEffect(() => {
@@ -57,13 +59,14 @@ export const TimerProvider = ({ children }: { children: ReactNode }) => {
   }, [timerValue]);
 
   const addMinute = () => {
-    setTimerValue((prev) => prev + 60000);
+    setTimerValue(() => currentTime + 60000);
     setCurrentTime((prev) => prev + 60000);
   };
 
   const resetTimer = () => {
     stopTimer();
     setCurrentTime(timerValue);
+    setProgress(calculateProgress(currentTime, timerValue));
   };
 
   const startTimer = () => {
