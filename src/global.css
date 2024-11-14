@@ -3,18 +3,12 @@
   line-height: 1.5;
   font-weight: 400;
   font-size: 16px;
-  --primary-color: #fff;
-  --secondary-color: #263238;
-  --background-color: #263238;
-  --modal-background-color: #546e7a;
-  --modal-heading-color: #37474f;
 }
 
 body {
   margin: 0;
   display: flex;
   place-items: center;
-  background-color: var(--background-color);
 }
 
 .sr-only {
