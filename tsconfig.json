@@ -5,6 +5,10 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "module": "esnext",
+    "target": "ES2020",
+    "types": ["jest", "@testing-library/jest-dom"]
   }
 }
