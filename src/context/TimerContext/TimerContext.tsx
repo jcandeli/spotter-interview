@@ -39,13 +39,13 @@ export const TimerProvider = ({ children }: { children: ReactNode }) => {
           }
           return prev - 1000;
         });
-
-        // Update progress
-        setProgress(() => {
-          const percentage = (currentTime / timerValue) * 100;
-          return percentage < 0 ? 0 : percentage;
-        });
       }, 1000);
+
+      // Update progress
+      setProgress(() => {
+        const percentage = (currentTime / timerValue) * 100;
+        return percentage < 0 ? 0 : percentage;
+      });
 
       return () => clearInterval(interval);
     }
@@ -62,6 +62,7 @@ export const TimerProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const resetTimer = () => {
+    stopTimer();
     setCurrentTime(timerValue);
   };
 
