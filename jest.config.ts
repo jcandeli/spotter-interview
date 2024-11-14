@@ -6,7 +6,7 @@ const config: Config = {
   testMatch: ["**/*.test.ts", "**/*.test.tsx"],
   moduleFileExtensions: ["ts", "tsx", "js"],
   transform: {
-    "^.+\\.ts$": "ts-jest",
+    "^.+\\.(ts|tsx)$": "ts-jest",
   },
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
 };

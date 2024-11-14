@@ -29,7 +29,7 @@ const Main = styled.main<{ isDarkMode: boolean }>`
 
 function App() {
   const [isOpen, setIsOpen] = useState(true);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   return (
     <Main isDarkMode={isDarkMode}>
@@ -47,7 +47,11 @@ function App() {
           zIndex: 100,
         }}
       >
-        {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+        {isDarkMode ? (
+          <Sun size={20} aria-label="Light mode" />
+        ) : (
+          <Moon size={20} aria-label="Dark mode" />
+        )}
       </button>
       <Button
         variation="invisible"
