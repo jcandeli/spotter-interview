@@ -5,6 +5,10 @@ A simple timer application built with Vite and React.
 |--------|------------------|
 | <img src="./public/design.png" width="400"> | <img src="./public/screenshot.png" width="310"> |
 
+Here is a loom video of me walking through the code and explaining my thought process.
+
+[Loom Video](https://www.loom.com/share/c8cfb832090d43db8ceb83e88d8ce7a4?sid=479f62bd-f350-483d-8912-20624378a070)
+
 ## Overview
 
 The general steps I took to build this app were:
@@ -19,16 +23,13 @@ The general steps I took to build this app were:
 
 ### Technical Decisions
 
+- **Development Tools**: Used Cursor editor and Sonnet LLM to accelerate development. Code reviewed, and refactored until code met my standards and best practices.
 - **Vite**: Chosen as the build tool for its simplicity and speed, as Next.js would have been overengineered for this use case
 - **Clever Library**: Initially implemented custom time input formatting logic, but switched to Clever library for more reliable and bug-free input handling
 - **Test Coverage**: Added comprehensive unit tests to ensure code reliability
+- **Emotion Styled Components**: Used for styling components due to its CSS-in-JS capabilities and seamless integration with React
 
 ## Getting Started
-
-### Prerequisites
-
-- Node.js (latest LTS version recommended)
-- npm
 
 ### Installation
 
@@ -57,9 +58,9 @@ The general steps I took to build this app were:
 
 If I had more time I would have:
 
-- Added the draggable handle for the timer.
-- Added more unit tests.
-- Added Storybook stories for each component.
-- Added more metadata.
-- Added localization.
-- Allowed for multiple timers to run simultaneously.
+- Add the draggable handle for the timer.
+- Add more unit tests.
+- Add Storybook stories for each component.
+- Add more metadata.
+- Add localization.
+- Allow for multiple timers to run simultaneously.
